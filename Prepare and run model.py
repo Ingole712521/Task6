@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
 import os
-
+import pywhatkit as kit
 face_classifier = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
 
 def face_detector(img, size=0.5):
     
@@ -34,7 +35,7 @@ while True:
 
         # Pass face to prediction model
         # "results" comprises of a tuple containing the label and the confidence value
-        results = nehal.predict(face)
+        results = sudeep_model.predict(face)
         # harry_model.predict(face)
         
         if results[1] < 500:
@@ -43,26 +44,28 @@ while True:
             
         cv2.putText(image, display_string, (100, 120), cv2.FONT_HERSHEY_COMPLEX, 1, (255,120,150), 2)
         
-        if confidence > 90:
-            cv2.putText(image, "Hello Buddy", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)
+        if confidence > 80:
+            cv2.putText(image, "Hi Buddy ", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,255,0), 2)
             cv2.imshow('Face Recognition', image )
+            Auto()
             print("Now auto mail will be generated:")
             
             break
          
         else:
-            
-            cv2.putText(image, "Hello Buddy ", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
+            cv2.putText(image, "I dont know, who are you?", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
             cv2.imshow('Face Recognition', image )
 
     except:
         cv2.putText(image, "No Face Found!", (220, 120) , cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
         cv2.putText(image, "looking for face....", (250, 450), cv2.FONT_HERSHEY_COMPLEX, 1, (0,0,255), 2)
         cv2.imshow('Face Recognition', image )
+        
+        
         pass
         
     if cv2.waitKey(1) == 13: #13 is the Enter Key
         break
         
 cap.release()
-cv2.destroyAllWindows()     
+cv2.destroyAllWindows()  
