@@ -35,7 +35,7 @@ while True:
 
         # Pass face to prediction model
         # "results" comprises of a tuple containing the label and the confidence value
-        results = sudeep_model.predict(face)
+        results = nehal_model.predict(face)
         # harry_model.predict(face)
         
         if results[1] < 500:
